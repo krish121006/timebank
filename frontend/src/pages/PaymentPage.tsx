@@ -35,6 +35,14 @@ export const PaymentPage: React.FC = () => {
   const handleStartPaymentFlow = async () => {
     if (!currentOrder) return;
     setPaymentStep('PROCESSING');
+    setTimeout(() => {
+      setPaymentStep('OTP');
+    }, 1200);
+  };
+
+  const executeFinalVerification = async () => {
+    if (!currentOrder) return;
+    setPaymentStep('PROCESSING');
 
     try {
       const verifyRes = await api.post('/payments/verify', {
